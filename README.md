@@ -11,9 +11,16 @@ CentOS Linux 8. It does not support CentOS Stream.
 
 ## Before you switch
 
+<details>
+  <summary><strong>Remove all non-standard kernels</strong> i.e.  kernels that are not from either the CentOS <code>base</code> or <code>updates</code> repos. Click for more info.</summary>
+
+  > Because of the [GRUB2 BootHole](https://blogs.oracle.com/linux/cve-2020-10713-grub2-boothole) vulnerability, our SecureBoot shim can only boot kernels signed by Oracle and we can only replace the default CentOS kernels. While this may not have an impact if SecureBoot is currently disabled, enabling it at a later date could render the system unbootable. For that reason, we strongly recommend removing all non-standard kernels before switching.
+
+</details>
+
 1. Ensure your CentOS `yum` or `dnf` configuration is working, i.e. there are no
    stale repositories.
-1. Disable all non-CentOS repositories. You can re-enable them after the switch.
+1. Remove all packages from and disable all non-CentOS repositories. You can re-enable the repos and reinstall the packages them after the switch.
 1. Ensure you have at least 5GB of free space in `/var/cache`.
 1. All automatic updates, e.g. via `yum-cron` should be disabled.
 
